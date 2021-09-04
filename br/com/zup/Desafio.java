@@ -53,17 +53,22 @@ public class Desafio {
 
 
                 case 1:
-                    System.out.println(cadastroDefuncionario);
+                    //Exibindo a lista de uma maneira mais bonita
+                    for (String chaveFuncionario : cadastroDefuncionario.keySet()) {
+                        System.out.println(cadastroDefuncionario.get(chaveFuncionario) + chaveFuncionario);
+                        leitor.nextLine();
+                    }
+
                     System.out.println("Lista Exibida Com Sucesso");
 
                     break;
 
                 case 2:
-           //Estrutura para cadastrar ou não um novo funcionario
+                    //Estrutura para cadastrar ou não um novo funcionario
 
                     while (novoCadastro == true) {
                         System.out.println("Voce deseja cadastrar um novo funcionário?");
-                        System.out.println(" 1- Para Sim       2- Para Não");
+                        System.out.println(" 1-Sim         2-Não");
                         opcaonovocadastro = leitor.nextInt();
                         leitor.nextLine();
 
@@ -79,17 +84,16 @@ public class Desafio {
                             String telefone = leitor.nextLine();
                             System.out.println("Digite o do e-mail completo funcionário:  ");
                             String email = leitor.nextLine();
-                            System.out.println("Funcionário Cadastrado Com Sucesso");
 
-                            //armazenando o valor das variaveis de cadastro:
-                            cadastroDefuncionario.put(cpf, " Nome do funcionário : " + nome + " Telefone do funcionário " + telefone + " E-mail do funcionário: " + email);
+                            cadastroDefuncionario.put("CPF: " + cpf, " Nome do funcionário : " + nome + " Telefone do funcionário: " + telefone + " E-mail do funcionário: " + email);
+
 
                         } else if (opcaonovocadastro == 2) {
                             novoCadastro = false;
                             //caso não queira cadastrar mais funcionarios
                         } else {
                             System.out.println("Digite um valor válido");
-                            //caso a pessoa não digite 1 ou 2
+                            //Caso a pessoa não digite 1 ou 2
                         }
 
                     }
