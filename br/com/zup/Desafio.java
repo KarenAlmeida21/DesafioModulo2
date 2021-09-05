@@ -22,7 +22,7 @@ public class Desafio {
         //Tentando corrigir o bug (mudando o código)
 
         // Novas Variaveis
-        boolean loop = true;
+        boolean menu = true;
         int opcaonovocadastro;
 
 
@@ -30,7 +30,7 @@ public class Desafio {
         Scanner leitor = new Scanner(System.in);
 
 //Principal menu (recebendo a opção do menu do funcionario)
-        while (loop == true) {
+        while (menu == true) {
             System.out.println("~~~~          Lojas Mais Barato             ~~~~");
             System.out.println(" ");
             System.out.println("");
@@ -51,6 +51,7 @@ public class Desafio {
                     } else {
 
                         System.out.println("Na lista há " + cadastroDefuncionario.size() + " funcionários cadastrados");
+
                         //Exibindo a lista de uma maneira mais bonita
                         for (String chaveFuncionario : cadastroDefuncionario.keySet()) {
                             System.out.println(cadastroDefuncionario.get(chaveFuncionario) + chaveFuncionario);
@@ -62,7 +63,9 @@ public class Desafio {
                     break;
 
                 case 2:
-                    System.out.println("~~~~ Programa Para Cadastramento De Funcionários");
+                    // A estrutura que eu havia feito anteriormente dentro do case 2 estava bugando meu codigo. Não havia sentido em questionar
+                    //o usuario 2 vezes sobre a escolha para cadastramento ou não;
+                    System.out.println("~~~~ Cadastramento De Novos Funcionários");
 
                     System.out.println("Informe o CPF novo funcionário");
                     String cpf = leitor.nextLine();
@@ -72,23 +75,21 @@ public class Desafio {
                     String telefone = leitor.nextLine();
                     System.out.println("Informe o e-mail do novo funcionário");
                     String email = leitor.nextLine();
+                    //armazenando os dados
                     cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
 
+                    for (String chavecpf : cadastroDefuncionario.keySet()) {
+                        if (chavecpf.equals(cpf)) {
+                            System.out.println("Atenção: Funcionário Já Cadastrado.");
+                        } else {
+                            cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
+                        }
 
-
-                    for(String chavecpf:cadastroDefuncionario.keySet()){
-                       if(chavecpf.equals(cpf)){
-                           System.out.println("Funcionário Já Cadastrado.");
-                       }else{
-                           cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
-                       }
-
-                   }
-
-
-
+                    }
                     break;
+
                 case 3:
+                    System.out.println("~~~~ Exclusão De Funcionário");
                     System.out.println("Informe o CPF que você deseja excluir");
                     String cpfAserExcluido = leitor.nextLine();
                     String cpfExcluido = "";
@@ -104,17 +105,26 @@ public class Desafio {
 
                     }
                     cadastroDefuncionario.remove(cpfExcluido);
-
-
                     break;
                 case 4:
-                    System.out.println("Programa Encerrado");
-                    System.out.println("Bom Trabalho");
-                    loop = false;
+                    //Fiz uma confirmação de encerramento. Caso a pessoa encerre o programa sem querer.
+                    System.out.println("Você realmente deseja encerrar o programa?");
+                    System.out.println("1-Sim               2-Não");
+                    int confirmacaoEncerramento = leitor.nextInt();
+                    if (confirmacaoEncerramento == 1){
+                        menu = false;
+                        System.out.println("~~~~ Programa Encerrado ~~~~");
+                        System.out.println("        Bom Trabalho!       ");
+                    } else {
+                        menu=true;}
+
+
                     break;
+
                 default:
-                    System.out.println("Digite uma opção válida.");
                     //caso não digite uma opção válida do menu
+                    System.out.println("Digite uma opção válida.");
+
                     break;
             }
 
