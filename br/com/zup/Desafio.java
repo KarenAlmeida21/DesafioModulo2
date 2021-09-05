@@ -19,32 +19,29 @@ public class Desafio {
         //Entrega Máxima: O Sistema permite excluir um funcionário usando como
         //parâmetro o CPF e não permite inserir um funcionário com o CPF repetido.
 
+        //Tentando corrigir o bug (mudando o código)
 
-        //Variaveis
-        boolean novoCadastro = true;
+        // Novas Variaveis
+        boolean loop = true;
         int opcaonovocadastro;
 
 
         Map<String, String> cadastroDefuncionario = new HashMap<String, String>();
-
-        //fazendo o menu principal:
-        System.out.println("~~~~ Programa Para Cadastro De Funcionários ~~~~");
-        System.out.println("     Opcão 1- Exibir lista de funcionários.");
-        System.out.println("     Opção 2- Adicionar novo funcionário.");
-        System.out.println("     Opção 3- Excluir funcionário.");
-        System.out.println("     Opção 4- Encerrar o sistema.");
-
-
-        //Recebendo a opçao do menu:
         Scanner leitor = new Scanner(System.in);
 
-
-        System.out.println("     Digite  a opção desejada:");
-        int menuEscolhido = leitor.nextInt();
-        leitor.nextLine();
-
-
-        while (menuEscolhido != 4) {
+//Principal menu (recebendo a opção do menu do funcionario)
+        while (loop == true) {
+            System.out.println("~~~~          Lojas Mais Barato             ~~~~");
+            System.out.println(" ");
+            System.out.println("");
+            System.out.println("     Digite  a opção desejada:");
+            System.out.println("     Opcão 1- Exibir lista de funcionários.");
+            System.out.println("     Opção 2- Adicionar novo funcionário.");
+            System.out.println("     Opção 3- Excluir funcionário.");
+            System.out.println("     Opção 4- Encerrar o sistema.");
+            int menuEscolhido = leitor.nextInt();
+            leitor.nextLine();
+//Açoes do menu
             switch (menuEscolhido) {
 
 
@@ -57,85 +54,72 @@ public class Desafio {
                         //Exibindo a lista de uma maneira mais bonita
                         for (String chaveFuncionario : cadastroDefuncionario.keySet()) {
                             System.out.println(cadastroDefuncionario.get(chaveFuncionario) + chaveFuncionario);
-                            System.out.println("Lista Exibida Com Sucesso");
+
                         }
+                        System.out.println("Lista Exibida Com Sucesso");
 
                     }
                     break;
 
                 case 2:
-                    //Estrutura para cadastrar ou não um novo funcionario
-                    //Estrutura para cadastrar ou não um novo funcionario
+                    System.out.println("~~~~ Programa Para Cadastramento De Funcionários");
 
-                    while (novoCadastro == true) {
-                        System.out.println("Voce deseja cadastrar um novo funcionário?");
-                        System.out.println(" 1- Para Sim       2- Para Não");
-                        System.out.println(" 1-Sim         2-Não");
-                        opcaonovocadastro = leitor.nextInt();
-                        leitor.nextLine();
-                        if (opcaonovocadastro == 1) {
-                            System.out.println("~~~~ Cadastrando Novo Funcionário: ~~~~");
-                            System.out.println("Digite o CPF do novo funcionário:  ");
-                            String cpf = leitor.nextLine();
-                            System.out.println("Digite o nome completo do novo funcionário: ");
-                            String nome = leitor.nextLine();
-                            System.out.println("Digite o telefone do novo funcionário:");
-                            String telefone = leitor.nextLine();
-                            System.out.println("Digite o do e-mail completo funcionário:  ");
-                            String email = leitor.nextLine();
-                            System.out.println("Funcionário Cadastrado Com Sucesso");
-
-
-                            //armazenando o valor das variaveis de cadastro:
-                            cadastroDefuncionario.put(cpf, "   Nome do funcionário : " + nome + " Telefone do funcionário " + telefone + " E-mail do funcionário: " + email);
+                    System.out.println("Informe o CPF novo funcionário");
+                    String cpf = leitor.nextLine();
+                    System.out.println("Informe o nome do novo funcionário");
+                    String nome = leitor.nextLine();
+                    System.out.println("Informe o telefone do novo funcionário");
+                    String telefone = leitor.nextLine();
+                    System.out.println("Informe o e-mail do novo funcionário");
+                    String email = leitor.nextLine();
+                    cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
 
 
 
-                        } else if (opcaonovocadastro == 2) {
-                            novoCadastro = false;
-                            //caso não queira cadastrar mais funcionarios
-                        } else {
-                            System.out.println("Digite um valor válido");
-                            //caso a pessoa não digite 1 ou 2
-                            //Caso a pessoa não digite 1 ou 2
-                        }
+                    for(String chavecpf:cadastroDefuncionario.keySet()){
+                       if(chavecpf.equals(cpf)){
+                           System.out.println("Funcionário Já Cadastrado.");
+                       }else{
+                           cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
+                       }
 
-                    }
+                   }
+
+
+
                     break;
                 case 3:
-                    if (cadastroDefuncionario.size() == 0) {
-                        System.out.println("Não há funcionários cadastrados");
-                    } else {
-                        System.out.println("Digite o CPF do funcionário:");
-                        String cpfExcluido = "";
-                        String cpfQueseraExcluido = leitor.nextLine();
-                        for (String chaveAluno : cadastroDefuncionario.keySet()) {
-                            if (chaveAluno == cpfQueseraExcluido) {
-                                //cadastroDefuncionario.remove(cpfQueseraExcluido);
-                                cpfExcluido = cpfQueseraExcluido;
-                                System.out.println("Cadastro Excluído Com Sucesso ");
+                    System.out.println("Informe o CPF que você deseja excluir");
+                    String cpfAserExcluido = leitor.nextLine();
+                    String cpfExcluido = "";
 
-                            }
+                    for (String chaveCpf : cadastroDefuncionario.keySet()) {
+                        if (chaveCpf.equals(cpfAserExcluido)) {
+                            System.out.println("Cadastro Encontrado E Removido Com Sucesso");
+                            cpfExcluido = cpfAserExcluido;
+
+
                         }
-                        cadastroDefuncionario.remove(cpfExcluido);
+
+
                     }
+                    cadastroDefuncionario.remove(cpfExcluido);
+
+
+                    break;
+                case 4:
+                    System.out.println("Programa Encerrado");
+                    System.out.println("Bom Trabalho");
+                    loop = false;
                     break;
                 default:
                     System.out.println("Digite uma opção válida.");
                     //caso não digite uma opção válida do menu
                     break;
             }
-            System.out.println("     Digite  a opção desejada:");
-            System.out.println("     Opcão 1- Exibir lista de funcionários.");
-            System.out.println("     Opção 2- Adicionar novo funcionário.");
-            System.out.println("     Opção 3- Excluir funcionário.");
-            System.out.println("     Opção 4- Encerrar o sistema.");
-            menuEscolhido = leitor.nextInt();
 
         }
 
 
-        System.out.println("Programa Encerrado");
-        System.out.println("  Bom trabalho!   ");
     }
 }
