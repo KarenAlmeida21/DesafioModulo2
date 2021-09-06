@@ -32,8 +32,7 @@ public class Desafio {
 //Principal menu (recebendo a opção do menu do funcionario)
         while (menu == true) {
             System.out.println("~~~~          Lojas Mais Barato             ~~~~");
-            System.out.println(" ");
-            System.out.println("");
+            System.out.println("\n");
             System.out.println("     Digite  a opção desejada:");
             System.out.println("     Opcão 1- Exibir lista de funcionários");
             System.out.println("     Opção 2- Adicionar novo funcionário");
