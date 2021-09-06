@@ -51,12 +51,14 @@ public class Desafio {
                     } else {
 
                         System.out.println("Na lista há " + cadastroDefuncionario.size() + " funcionários cadastrados");
+                        System.out.println("\n");
 
                         //Exibindo a lista de uma maneira mais bonita
                         for (String chaveFuncionario : cadastroDefuncionario.keySet()) {
-                            System.out.println(cadastroDefuncionario.get(chaveFuncionario) + chaveFuncionario);
+                            System.out.println(cadastroDefuncionario.get(chaveFuncionario));
 
                         }
+                        System.out.println("\n");
                         System.out.println("Lista Exibida Com Sucesso");
 
                     }
@@ -66,6 +68,7 @@ public class Desafio {
                     // A estrutura que eu havia feito anteriormente dentro do case 2 estava bugando meu codigo. Não havia sentido em questionar
                     //o usuario 2 vezes sobre a escolha para cadastramento ou não;
                     System.out.println("~~~~ Cadastramento De Novos Funcionários");
+                    System.out.println("\n");
 
                     System.out.println("Informe o CPF novo funcionário");
                     String cpf = leitor.nextLine();
@@ -76,47 +79,62 @@ public class Desafio {
                     System.out.println("Informe o e-mail do novo funcionário");
                     String email = leitor.nextLine();
                     //armazenando os dados
-                    cadastroDefuncionario.put(cpf,  "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone + "CPF");
+                    if (cadastroDefuncionario.size() != 0) {
+                        //verificação de cpf iguais
+                        for (String chavecpf : cadastroDefuncionario.keySet()) {
+                            if (chavecpf.equals(cpf)) {
+                                System.out.println("Atenção: Funcionário Já Cadastrado.");
+                            } else {
+                                cadastroDefuncionario.put(cpf, "Nome: " + nome + " E-mail: " + email + " Telefone: " + telefone + " CPF:" + cpf);
+                                System.out.println("Cadastro realizado com sucesso");
+                            }
 
-                    for (String chavecpf : cadastroDefuncionario.keySet()) {
-                        if (chavecpf.equals(cpf)) {
-                            System.out.println("Atenção: Funcionário Já Cadastrado.");
-                        } else {
-                            cadastroDefuncionario.put(cpf, " Nome: " + nome + " E-mail: " + email + " Telefone: " + telefone);
                         }
+                        break;
+                    }else{
+                        cadastroDefuncionario.put(cpf, "Nome: " + nome + " E-mail: " + email + " Telefone: " + telefone + " CPF:" + cpf + "\n"  );
+                     // System.out.println("cadastro realizado com sucesso");
 
                     }
                     break;
 
                 case 3:
                     System.out.println("~~~~ Exclusão De Funcionário");
+                    System.out.println("\n");
                     System.out.println("Informe o CPF que você deseja excluir");
                     String cpfAserExcluido = leitor.nextLine();
                     String cpfExcluido = "";
+                    System.out.println("Atenção");
+                    System.out.println("Você realmente deseja excluir o CPF informado do seu cadastro?(S/N)");
+                    String confirmacaoExclusao = leitor.nextLine();
+                    if(confirmacaoExclusao.equalsIgnoreCase("s")){
 
                     for (String chaveCpf : cadastroDefuncionario.keySet()) {
                         if (chaveCpf.equals(cpfAserExcluido)) {
                             System.out.println("Cadastro Encontrado E Removido Com Sucesso");
                             cpfExcluido = cpfAserExcluido;
+                        }
 
 
                         }
 
 
+                    }else{
+                        System.out.println("Cadastro Não Removido");
                     }
                     cadastroDefuncionario.remove(cpfExcluido);
                     break;
                 case 4:
                     //Fiz uma confirmação de encerramento. Caso a pessoa encerre o programa sem querer.
-                    System.out.println("Você realmente deseja encerrar o programa?");
-                    System.out.println("1-Sim               2-Não");
-                    int confirmacaoEncerramento = leitor.nextInt();
-                    if (confirmacaoEncerramento == 1){
+                    System.out.println("Você realmente deseja encerrar o programa? (S/N)");
+                    String confirmacaoEncerramento = leitor.nextLine();
+                    if (confirmacaoEncerramento.equalsIgnoreCase("s")) {
                         menu = false;
                         System.out.println("~~~~ Programa Encerrado ~~~~");
                         System.out.println("        Bom Trabalho!       ");
                     } else {
-                        menu=true;}
+                        menu = true;
+                    }
 
 
                     break;
