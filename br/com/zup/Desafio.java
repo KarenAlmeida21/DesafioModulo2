@@ -35,10 +35,10 @@ public class Desafio {
             System.out.println(" ");
             System.out.println("");
             System.out.println("     Digite  a opção desejada:");
-            System.out.println("     Opcão 1- Exibir lista de funcionários.");
-            System.out.println("     Opção 2- Adicionar novo funcionário.");
-            System.out.println("     Opção 3- Excluir funcionário.");
-            System.out.println("     Opção 4- Encerrar o sistema.");
+            System.out.println("     Opcão 1- Exibir lista de funcionários");
+            System.out.println("     Opção 2- Adicionar novo funcionário");
+            System.out.println("     Opção 3- Excluir funcionário");
+            System.out.println("     Opção 4- Encerrar o programa");
             int menuEscolhido = leitor.nextInt();
             leitor.nextLine();
 //Açoes do menu
@@ -76,13 +76,13 @@ public class Desafio {
                     System.out.println("Informe o e-mail do novo funcionário");
                     String email = leitor.nextLine();
                     //armazenando os dados
-                    cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
+                    cadastroDefuncionario.put(cpf,  "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone + "CPF");
 
                     for (String chavecpf : cadastroDefuncionario.keySet()) {
                         if (chavecpf.equals(cpf)) {
                             System.out.println("Atenção: Funcionário Já Cadastrado.");
                         } else {
-                            cadastroDefuncionario.put(cpf, "Nome: " + nome + "E-mail: " + email + "Telefone: " + telefone);
+                            cadastroDefuncionario.put(cpf, " Nome: " + nome + " E-mail: " + email + " Telefone: " + telefone);
                         }
 
                     }
